@@ -71,3 +71,8 @@
 (setq sr-speedbar-width 20)
 (setq sr-speedbar-right-side nil)
 (sr-speedbar-open)
+
+;; LaTeX
+(setq TeX-PDF-mode t)
+(setq LaTeX-item-indent 0)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
