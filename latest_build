@@ -64,13 +64,7 @@
 
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)   
-
-;; Speed bar
-(require 'sr-speedbar)
-(setq sr-speedbar-width 20)
-(setq sr-speedbar-right-side nil)
-(sr-speedbar-open)
+(setq jedi:complete-on-dot t)
 
 ;; LaTeX
 (setq TeX-PDF-mode t)
