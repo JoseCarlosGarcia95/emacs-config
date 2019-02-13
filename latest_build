@@ -19,6 +19,8 @@
     py-autopep8
     jedi
     sr-speedbar
+    auctex-latexmk
+    auto-complete-auctex
     )
   )
 
@@ -67,6 +69,14 @@
 (setq jedi:complete-on-dot t)
 
 ;; LaTeX
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+(require 'auto-complete-auctex)
+
 (setq TeX-PDF-mode t)
 (setq LaTeX-item-indent 0)
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+
+(add-hook 'LaTeX-mode-hook
+      (lambda()
+        (local-set-key [C-tab] 'TeX-complete-symbol)))
