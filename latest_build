@@ -1,4 +1,5 @@
-;; Packages
+;
+; Packages
 
 (require 'package)
 
@@ -24,6 +25,8 @@
     puppet-mode
     vcl-mode
     clang-format
+    company
+    company-c-headers
     )
   )
 
@@ -45,7 +48,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dockerfile-mode docker-compose-mode material-theme better-defaults))))
+    (dockerfile-mode docker-compose-mode material-theme better-defaults)))
+ '(safe-local-variable-values
+   (quote
+    ((company-clang-arguments "-I/home/jose/code/Sophie/includes/")
+     (company-clang-arguments "-I~/code/Sophie/includes/")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,7 +96,15 @@
 ;; C-IDE
 (require 'clang-format)
 
+
 (add-hook 'c-mode-common-hook
           (function (lambda ()
 		      (add-hook 'before-save-hook
 				'clang-format-buffer))))
+
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-to-list 'company-backends 'company-c-headers)
+
+(setq company-backends (delete 'company-semantic company-backends))
+
