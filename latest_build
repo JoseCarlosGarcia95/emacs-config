@@ -23,7 +23,7 @@
     auto-complete-auctex
     puppet-mode
     vcl-mode
-    clang-format+
+    clang-format
     )
   )
 
@@ -86,9 +86,10 @@
       (lambda()
         (local-set-key [C-tab] 'TeX-complete-symbol)))
 
-;; Clang format
+;; C-IDE
 (require 'clang-format)
-(global-set-key (kbd "C-c i") 'clang-format-region)
-(global-set-key (kbd "C-c u") 'clang-format-buffer)
 
-(setq clang-format-style-option "webkit")
+(add-hook 'c-mode-common-hook
+          (function (lambda ()
+		      (add-hook 'before-save-hook
+				'clang-format-buffer))))
