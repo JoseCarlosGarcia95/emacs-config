@@ -96,15 +96,13 @@
 ;; C-IDE
 (require 'clang-format)
 
-
-(add-hook 'c-mode-common-hook
-          (function (lambda ()
-		      (add-hook 'before-save-hook
-				'clang-format-buffer))))
+(add-hook 'c-mode-hook 
+  (lambda ()
+    (add-hook (make-local-variable 'before-save-hook)
+              'clang-format-buffer)))
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-to-list 'company-backends 'company-c-headers)
 
 (setq company-backends (delete 'company-semantic company-backends))
-
